@@ -126,6 +126,118 @@ h1 { margin-bottom: 1.5rem; max-width: 800px; font-family: Georgia, "Noto Serif 
 .workflow span { color: var(--accent); font: 700 .75rem/1 "Segoe UI", sans-serif; }
 .workflow strong { margin: .85rem 0 .15rem; font-size: 1.05rem; }
 .workflow small { color: var(--muted); }
+.process-heading { max-width: 760px; margin: 0 0 2rem; }
+.process-heading h3 {
+  margin-bottom: 1rem;
+  font-family: Georgia, "Noto Serif SC", serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.process-heading > p:last-child { color: var(--muted); }
+.lab-process-stage {
+  display: grid;
+  grid-template-columns: minmax(280px, .34fr) minmax(0, .66fr);
+  gap: 1.25rem;
+  align-items: stretch;
+  margin-bottom: 3rem;
+}
+.lab-process-tabs {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  border-top: 1px solid var(--line);
+}
+.lab-process-tab {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  grid-template-areas:
+    "index title"
+    "index note";
+  align-content: center;
+  gap: .15rem .75rem;
+  padding: .8rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: color .25s ease, background-color .25s ease, transform .25s ease;
+}
+.lab-process-tab > span { grid-area: index; color: var(--accent); font-size: .7rem; font-weight: 800; }
+.lab-process-tab strong { grid-area: title; }
+.lab-process-tab small { grid-area: note; color: var(--muted); }
+.lab-process-tab:hover,
+.lab-process-tab:focus-visible { background: var(--paper); }
+.lab-process-tab.active {
+  color: white;
+  background: var(--ink);
+  transform: translateX(8px);
+}
+.lab-process-tab.active small { color: #b7c6cf; }
+.lab-process-viewer {
+  min-width: 0;
+  background: #edf0ef;
+  box-shadow: 0 24px 55px rgba(11, 31, 51, .12);
+}
+.lab-process-slide {
+  display: none;
+  margin: 0;
+  animation: internship-in .45s ease both;
+}
+.lab-process-slide.active { display: block; }
+.lab-process-slide .image-button img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  background: #e5e9e9;
+}
+.lab-process-slide figcaption {
+  display: grid;
+  grid-template-columns: minmax(150px, .28fr) 1fr;
+  gap: 1rem;
+  min-height: 92px;
+  padding: 1rem 1.1rem;
+  color: white;
+  background: var(--ink);
+}
+.lab-process-slide figcaption strong { font-family: Georgia, "Noto Serif SC", serif; font-size: 1.12rem; }
+.lab-process-slide figcaption > span { color: #b9c7cf; font-size: .84rem; }
+.sem-plan {
+  display: grid;
+  grid-template-columns: minmax(220px, .3fr) minmax(0, .7fr);
+  gap: 3rem;
+  margin: 0 0 8rem;
+  padding: 2rem;
+  color: white;
+  background: var(--ink);
+}
+.sem-plan h3 {
+  margin-bottom: 1rem;
+  font-family: Georgia, serif;
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  letter-spacing: -.04em;
+}
+.sem-plan .eyebrow { color: #ffb49b; }
+.plan-status {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  color: #c2d0d7;
+  font-size: .82rem;
+  font-weight: 700;
+}
+.plan-status > span:first-child {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ffb049;
+  box-shadow: 0 0 0 5px rgba(255, 176, 73, .14);
+}
+.sem-plan-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-left: 1px solid rgba(255,255,255,.2); }
+.sem-plan-grid article { padding: 1rem 1.4rem; border-right: 1px solid rgba(255,255,255,.2); }
+.sem-plan-grid strong { font-size: 1.1rem; }
+.sem-plan-grid p { margin-top: 1rem; color: #b7c6cf; }
 .story-block { display: grid; grid-template-columns: .34fr .66fr; gap: 4rem; align-items: start; margin: 0 0 8rem; }
 .story-block.reverse { grid-template-columns: .34fr .66fr; }
 .story-copy { position: sticky; top: 110px; }
@@ -149,7 +261,8 @@ h1 { margin-bottom: 1.5rem; max-width: 800px; font-family: Georgia, "Noto Serif 
 .project-card,
 .timeline-item,
 .skill-grid article,
-.internship-outcomes article {
+.internship-outcomes article,
+.sem-plan-grid article {
   transition: transform .25s ease, background-color .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 .workflow div:hover,
@@ -363,6 +476,10 @@ footer { display: flex; justify-content: space-between; padding: 1.5rem max(24px
   .workflow div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .story-block, .story-block.reverse { grid-template-columns: 1fr; gap: 2rem; }
   .story-copy { position: static; }
+  .lab-process-stage { grid-template-columns: 1fr; }
+  .lab-process-tabs { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, auto); }
+  .lab-process-tab.active { transform: none; }
+  .sem-plan { grid-template-columns: 1fr; gap: 1.5rem; }
   .cad-feature { grid-template-columns: 1fr; gap: 2rem; }
   .cad-copy { position: static; }
   .internship-stage { grid-template-columns: 1fr; }
@@ -383,6 +500,11 @@ footer { display: flex; justify-content: space-between; padding: 1.5rem max(24px
   .workflow { grid-template-columns: 1fr; }
   .workflow div { border-right: 0; border-bottom: 1px solid var(--line); }
   .gallery-four, .gallery-three { grid-template-columns: 1fr; }
+  .lab-process-tabs { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, auto); }
+  .lab-process-tab { grid-template-columns: 28px 1fr; padding: .75rem; }
+  .lab-process-slide figcaption { grid-template-columns: 1fr; }
+  .sem-plan-grid { grid-template-columns: 1fr; }
+  .sem-plan-grid article { border-bottom: 1px solid rgba(255,255,255,.2); }
   .cad-gallery, .course-grid { grid-template-columns: 1fr; }
   .cad-wide, .cad-tall { grid-column: 1; width: 100%; }
   .internship-tabs { grid-template-columns: 1fr; }

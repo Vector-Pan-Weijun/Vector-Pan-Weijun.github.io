@@ -241,6 +241,21 @@ h1 { margin-bottom: 1.5rem; max-width: 800px; font-family: Georgia, "Noto Serif 
 .sem-plan-grid p { margin-top: 1rem; color: #b7c6cf; }
 .story-block { display: grid; grid-template-columns: .34fr .66fr; gap: 4rem; align-items: start; margin: 0 0 8rem; }
 .story-block.reverse { grid-template-columns: .34fr .66fr; }
+
+.overview-block { margin: 0 0 8rem; border: 1px solid var(--line); background: var(--paper); }
+.overview-heading { display: grid; grid-template-columns: minmax(260px, .8fr) 1.2fr; gap: 3rem; align-items: end; padding: 2.5rem; }
+.overview-heading h3 { margin: .45rem 0 0; font-family: var(--display); font-size: clamp(2rem, 3.5vw, 3.7rem); line-height: .98; }
+.overview-heading > p { margin: 0; color: var(--muted); line-height: 1.75; }
+.overview-tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.overview-tab { padding: 1rem 1.25rem; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--ink); font: 800 .95rem var(--sans); cursor: pointer; transition: color 180ms ease, background 180ms ease; }
+.overview-tab:last-child { border-right: 0; }
+.overview-tab:hover, .overview-tab.active { color: var(--paper); background: var(--navy); }
+.overview-viewer { background: #edf0ef; }
+.overview-slide { display: none; margin: 0; }
+.overview-slide.active { display: block; animation: panel-in 300ms ease both; }
+.overview-slide .image-button { display: block; width: 100%; }
+.overview-slide img { width: 100%; aspect-ratio: 4 / 1; object-fit: contain; }
+.overview-slide figcaption { padding: 1rem 1.4rem; color: var(--paper); background: var(--navy); font-size: .9rem; }
 .story-copy { position: sticky; top: 110px; }
 .figure-number { color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .16em; }
 .story-copy h3 { font-family: Georgia, "Noto Serif SC", serif; font-size: 2rem; line-height: 1.1; letter-spacing: -.03em; }
@@ -492,6 +507,11 @@ footer { display: flex; justify-content: space-between; padding: 1.5rem max(24px
 }
 
 @media (max-width: 600px) {
+  .overview-heading { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem; }
+  .overview-tabs { grid-template-columns: repeat(2, 1fr); }
+  .overview-tab:nth-child(2) { border-right: 0; }
+  .overview-tab:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .overview-slide img { aspect-ratio: 2 / 1; }
   .site-header { min-height: 62px; }
   h1 { font-size: 3rem; }
   .hero { padding-top: 3rem; }

@@ -93,6 +93,30 @@ labTabs.forEach((tab, index) => {
   });
 });
 
+const overviewTabs = [...document.querySelectorAll("[data-overview-tab]")];
+const overviewSlides = [...document.querySelectorAll("[data-overview-slide]")];
+const activateOverviewSlide = (index) => {
+  overviewTabs.forEach((tab, tabIndex) => {
+    const active = tabIndex === index;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-selected", String(active));
+  });
+  overviewSlides.forEach((slide, slideIndex) => {
+    slide.classList.toggle("active", slideIndex === index);
+  });
+};
+overviewTabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => activateOverviewSlide(index));
+  tab.addEventListener("keydown", (event) => {
+    if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft"].includes(event.key)) return;
+    event.preventDefault();
+    const direction = ["ArrowDown", "ArrowRight"].includes(event.key) ? 1 : -1;
+    const next = (index + direction + overviewTabs.length) % overviewTabs.length;
+    overviewTabs[next].focus();
+    activateOverviewSlide(next);
+  });
+});
+
 document.querySelectorAll(
   ".workflow div, .project-card, .timeline-item, .skill-grid article, .internship-outcomes article, .sem-plan-grid article"
 ).forEach((panel) => {
